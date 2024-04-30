@@ -459,3 +459,28 @@ class LCD1602:
 
         for index in range(len(str)):
             self.write_char(str[index])
+
+    def print_pos(self, row, col, str) -> None:
+        """print_pos
+
+        Args:
+            row (_type_): display row position
+            col (_type_): display col position
+            str (_type_): display string
+        """
+        if((row != 1) and (row != 2)):
+            print("row is invalid.")
+            return
+
+        if((col == 0) or (col > 16)):
+            print("col is invalid.")
+            return
+
+        if(((col - 1) + len(str)) > 16):
+            print("str length over size.")
+            return
+        
+        self.cursor_pos_set(row, col)
+
+        for index in range(len(str)):
+            self.write_char(str[index])
